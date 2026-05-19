@@ -346,7 +346,7 @@ BOOL SvcInstall(SvcInstallAction action) {
     // Obtain the existing maintenanceservice file's version number and
     // the new file's version number.  Versions are in the format of
     // A.B.C.D.
-    DWORD existingA, existingB, existingC, existingD;
+    /* DWORD existingA, existingB, existingC, existingD;
     DWORD newA, newB, newC, newD;
     BOOL obtainedExistingVersionInfo =
         GetVersionNumberFromPath(serviceConfig.lpBinaryPathName, existingA,
@@ -476,7 +476,7 @@ BOOL SvcInstall(SvcInstallAction action) {
       }
 
       return result;
-    }
+    } */
 
     // We don't need to copy ourselves to the existing location.
     // The tmp file (the process of which we are executing right now) will be
