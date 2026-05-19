@@ -1,0 +1,2 @@
+20260516144017
+https://hg.mozilla.org/releases/mozilla-release/rev/fc12dc911f904307729760a817deb829cbf8feb4
