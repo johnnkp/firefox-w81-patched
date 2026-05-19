@@ -1750,7 +1750,7 @@ bool Gecko_IsMainThread() { return NS_IsMainThread(); }
 bool Gecko_IsDOMWorkerThread() { return !!GetCurrentThreadWorkerPrivate(); }
 
 int32_t Gecko_GetNumStyleThreads() {
-  if (const auto& cpuInfo = hal::GetHeterogeneousCpuInfo()) {
+  /* if (const auto& cpuInfo = hal::GetHeterogeneousCpuInfo()) {
     size_t numBigCpus = cpuInfo->mBigCpus.Count();
     // If CPUs are homogeneous we do not need to override stylo's
     // default number of threads.
@@ -1764,9 +1764,11 @@ int32_t Gecko_GetNumStyleThreads() {
       }
       return static_cast<int32_t>(numBigCpus + cpuInfo->mMediumCpus.Count());
     }
-  }
+  } */
 
-  return -1;
+  SYSTEM_INFO s;
+  GetSystemInfo(&s);
+  return s.dwNumberOfProcessors; // -1;
 }
 
 const nsAttrValue* Gecko_GetSVGAnimatedClass(const Element* aElement) {
