@@ -844,14 +844,14 @@ bool DeviceManagerDx::CreateCompositorDeviceHelper(
     }
     return false;
   }
-  if (!D3D11Checks::DoesDeviceWork()) {
+  /* if (!D3D11Checks::DoesDeviceWork()) {
     if (!aAttemptVideoSupport) {
       aD3d11.SetFailed(FeatureStatus::Broken,
                        "Direct3D11 device was determined to be broken",
                        "FEATURE_FAILURE_D3D11_BROKEN"_ns);
     }
     return false;
-  }
+  } */
 
   aOutDevice = device;
   return true;
