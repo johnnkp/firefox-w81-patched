@@ -1840,12 +1840,12 @@ nsresult gfxDWriteFontList::InitFontListForPlatform() {
 
   if (LOG_FONTINIT_ENABLED()) {
     // determine dwrite version
-    nsAutoString dwriteVers;
-    gfxWindowsPlatform::GetDLLVersion(L"dwrite.dll", dwriteVers);
+    // nsAutoString dwriteVers;
+    // gfxWindowsPlatform::GetDLLVersion(L"dwrite.dll", dwriteVers);
     LOG_FONTINIT(("(fontinit) Start: %s %s\n", nowDate, nowTime));
     LOG_FONTINIT(("(fontinit) Uptime: %9.3f s\n", upTime / 1000));
     LOG_FONTINIT(("(fontinit) dwrite version: %s\n",
-                  NS_ConvertUTF16toUTF8(dwriteVers).get()));
+                  /* NS_ConvertUTF16toUTF8(dwriteVers).get() */ ""));
   }
 
   elapsedTime = (t5.QuadPart - t1.QuadPart) * 1000.0 / frequency.QuadPart;

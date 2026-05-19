@@ -769,7 +769,7 @@ nsresult GfxInfo::Init() {
     }
   }
 
-  mHasDriverVersionMismatch = false;
+  /* mHasDriverVersionMismatch = false;
   if (mAdapterVendorID[mActiveGPUIndex] ==
       GfxDriverInfo::GetDeviceVendor(DeviceVendor::Intel)) {
     // we've had big crashers (bugs 590373 and 595364) apparently correlated
@@ -854,7 +854,7 @@ nsresult GfxInfo::Init() {
           << NS_ConvertUTF16toUTF8(dllFileName2).get()
           << " v=" << NS_ConvertUTF16toUTF8(dllVersion2).get();
     }
-  }
+  } */
 
   const char* spoofedDriverVersionString =
       PR_GetEnv("MOZ_GFX_SPOOF_DRIVER_VERSION");
