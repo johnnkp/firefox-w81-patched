@@ -1328,7 +1328,7 @@ nsresult CollectProcessInfo(ProcessInfo& info) {
     glean::system_cpu::logical_cores.Set(info.cpuCount);
   }
 #endif
-  if (Maybe<hal::HeterogeneousCpuInfo> hetCpuInfo =
+  /* if (Maybe<hal::HeterogeneousCpuInfo> hetCpuInfo =
           hal::GetHeterogeneousCpuInfo()) {
     info.cpuPCount = int32_t(hetCpuInfo->mBigCpus.Count());
     info.cpuMCount = int32_t(hetCpuInfo->mMediumCpus.Count());
@@ -1338,14 +1338,15 @@ nsresult CollectProcessInfo(ProcessInfo& info) {
       glean::system_cpu::medium_cores.Set(info.cpuMCount);
       glean::system_cpu::little_cores.Set(info.cpuECount);
     }
-  } else {
-    info.cpuPCount = physicalCPUs;
+  } else { */
+    physicalCPUs = si.dwNumberOfProcessors;
+	info.cpuPCount = physicalCPUs;
     if (XRE_IsParentProcess()) {
       glean::system_cpu::big_cores.Set(physicalCPUs);
     }
     info.cpuMCount = 0;
     info.cpuECount = 0;
-  }
+  // }
 
   if (cpuSpeed >= 0) {
     info.cpuSpeed = cpuSpeed;
