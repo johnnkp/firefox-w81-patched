@@ -52,7 +52,8 @@ nsresult GfxInfo::GetDWriteEnabled(bool* aEnabled) {
 
 NS_IMETHODIMP
 GfxInfo::GetDWriteVersion(nsAString& aDwriteVersion) {
-  gfxWindowsPlatform::GetDLLVersion(L"dwrite.dll", aDwriteVersion);
+  // gfxWindowsPlatform::GetDLLVersion(L"dwrite.dll", aDwriteVersion);
+  aDwriteVersion.AssignLiteral(u"6.3.9600.20100");
   return NS_OK;
 }
 
@@ -528,7 +529,8 @@ nsresult GfxInfo::Init() {
     if (len < sizeof(sysdir)) {
       nsString rdpudd(sysdir);
       rdpudd.AppendLiteral("\\rdpudd.dll");
-      gfxWindowsPlatform::GetDLLVersion(rdpudd.get(), mDriverVersion[0]);
+      // gfxWindowsPlatform::GetDLLVersion(rdpudd.get(), mDriverVersion[0]);
+      mDriverVersion[0].AssignLiteral(u"6.3.9600.17000");
       mDriverDate[0].AssignLiteral("01-01-1970");
 
       // 0x1414 is Microsoft; 0xfefe is an invented (and unused) code
