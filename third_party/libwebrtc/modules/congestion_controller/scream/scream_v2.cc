@@ -145,11 +145,18 @@ void ScreamV2::UpdateL4SAlpha(const TransportPacketsFeedback& msg) {
 }
 
 void ScreamV2::UpdateRefWindow(const TransportPacketsFeedback& msg) {
-  bool is_ce = msg.HasPacketWithEcnCe();
+  bool is_ce = false; // msg.HasPacketWithEcnCe();
   bool is_loss = HasLostPackets(msg);
   bool is_virtual_ce = false;
   if (delay_based_congestion_control_.IsQueueDelayDetected()) {
     is_virtual_ce = true;
+  }
+
+  for (const auto& packet : msg.PacketsWithFeedback()) {
+    if (packet.ecn == EcnMarking::kCe) {
+      is_ce = true;
+	  break;
+    }
   }
 
   DataSize previous_ref_window = ref_window_;
