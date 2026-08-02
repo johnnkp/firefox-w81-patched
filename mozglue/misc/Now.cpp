@@ -46,10 +46,10 @@ Maybe<uint64_t> NowExcludingSuspendMs() {
 }
 
 Maybe<uint64_t> NowIncludingSuspendMs() {
-  static const mozilla::StaticDynamicallyLinkedFunctionPtr<void(WINAPI*)(
+  /* static const mozilla::StaticDynamicallyLinkedFunctionPtr<void(WINAPI*)(
       PULONGLONG)>
       pQueryInterruptTime(L"KernelBase.dll", "QueryInterruptTime");
-  if (!pQueryInterruptTime) {
+  if (!pQueryInterruptTime) { */
     // On Windows, this does include the time the computer was suspended so it's
     // an adequate fallback.
     TimeStamp processCreation = TimeStamp::ProcessCreation();
@@ -59,9 +59,9 @@ Maybe<uint64_t> NowIncludingSuspendMs() {
     } else {
       return Nothing();
     }
-  }
+  // }
   ULONGLONG interrupt_time;
-  pQueryInterruptTime(&interrupt_time);
+  QueryUnbiasedInterruptTime(&interrupt_time); // pQueryInterruptTime(&interrupt_time);
   return Some(interrupt_time / kHNSperMS);
 }
 
