@@ -150,7 +150,7 @@ bool D3D11Checks::DoesDeviceWork() {
     return true;
   }
 
-  if (GetModuleHandleW(L"igd10umd32.dll")) {
+  /* if (GetModuleHandleW(L"igd10umd32.dll")) {
     const wchar_t* checkModules[] = {L"dlumd32.dll", L"dlumd11.dll",
                                      L"dlumd10.dll"};
     for (size_t i = 0; i < PR_ARRAY_SIZE(checkModules); i += 1) {
@@ -173,7 +173,7 @@ bool D3D11Checks::DoesDeviceWork() {
         }
       }
     }
-  }
+  } */
   result = true;
   return true;
 }
