@@ -19,7 +19,7 @@
 #include "api/transport/network_control.h"
 #include "api/units/time_delta.h"
 #include "modules/congestion_controller/goog_cc/goog_cc_network_control.h"
-#include "modules/congestion_controller/goog_cc_scream_network_controller/goog_cc_scream_network_controller.h"
+// #include "modules/congestion_controller/goog_cc_scream_network_controller/goog_cc_scream_network_controller.h"
 #include "modules/congestion_controller/scream/scream_network_controller.h"
 #include "rtc_base/experiments/field_trial_parser.h"
 #include "rtc_base/logging.h"
@@ -99,14 +99,14 @@ GoogCcNetworkControllerFactory::Create(NetworkControllerConfig config) {
        factory_config_.rfc_8888_feedback_negotiated)) {
     return std::make_unique<ScreamNetworkController>(config);
   }
-  if (factory_config_.rfc_8888_feedback_negotiated &&
+  /* if (factory_config_.rfc_8888_feedback_negotiated &&
       (mode == Mode::kScreamAfterCe || mode == Mode::kGoogCcWithEct1)) {
     return std::make_unique<GoogCcScreamNetworkController>(
         config, std::move(goog_cc_config),
         mode == Mode::kScreamAfterCe
             ? GoogCcScreamNetworkController::Mode::kScreamAfterCe
             : GoogCcScreamNetworkController::Mode::kGoogCcWithEct1);
-  }
+  } */
   return std::make_unique<GoogCcNetworkController>(config,
                                                    std::move(goog_cc_config));
 }
